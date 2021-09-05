@@ -1,0 +1,48 @@
+{%   extends 'layout.html'       %}
+{% block content  %}
+<style>
+    .container{
+
+    padding:2%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    }
+    .card{
+    font-size:1em;
+    width:500px;
+    padding:2%;
+    }
+</style>
+<div class="container">
+    <div class="card">
+
+        <h3><center>SIGN UP</center></h3>
+        <h5><center>Start building right away!</center></h5>
+        <form method="post" action="">
+            <div class="form-group">
+            {{ form.hidden_tag() }}
+                <div class="m-2">
+                    {{ form.email.label(class="form-control-label")    }}
+        {{ form.email(class="form-control form-control-sm" )   }}
+                </div>
+                 <div class="m-2">
+                     {{ form.password.label(class="form-control-label")       }}
+        {{ form.password(class="form-control form-control-sm" )     }}
+                </div>
+                 <div class="m-2">
+                    {{ form.confirm_password.label(class="form-control-label")       }}
+        {{ form.confirm_password(class="form-control form-control-sm" )  }}
+                </div>
+                 <div class="m-2">
+
+            {{   form.submit(class="form-control form-control-sm bg-dark text-white " )    }}
+                </div>
+
+                </div>
+        </form>
+<a href="{{url_for('login') }}"><center>Already have an account?</center> </a>
+    </div>
+</div>
+{%  endblock    %}

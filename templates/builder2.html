@@ -1,0 +1,202 @@
+{%   extends 'layout.html'       %}
+{%   block nav   %}Logout{%  endblock    %}
+{% block content  %}
+<style>
+    .container_whole{
+    width:100%;
+    }
+
+    .container{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    }
+    .card{
+    height:900px;
+    width:700px;
+    margin:2%;
+<!--    width:70%;-->
+<!--    height:100%;-->
+
+    }
+    .card-one{
+    text-align:left;
+    }
+    #output{
+    float:right;
+    }
+</style>
+<script>
+    function black(){
+     var x=document.getElementsByClassName("change");
+     var y=document.getElementById("info");
+     var z=document.getElementById("profile_pic_1");
+     z.style.backgroundColor = "black";
+     y.style.backgroundColor = "black";
+     y.style.color="white";
+    for(var i=0;i<x.length;i++)
+    {
+    x[i].style.backgroundColor = "black";
+    x[i].style.color="white";
+    x[i].style.display="inline-block";
+    x[i].style.padding="3px";
+    x[i].style.borderRadius="5px";
+    }
+    }
+    function red(){
+     var x=document.getElementsByClassName("change");
+     var y=document.getElementById("info");
+     var z=document.getElementById("profile_pic_1");
+     z.style.backgroundColor = "#A52A2A";
+     y.style.backgroundColor = "#A52A2A";
+     y.style.color="white";
+    for(var i=0;i<x.length;i++)
+    {
+    x[i].style.backgroundColor = "#A52A2A";
+    x[i].style.color="white";
+    x[i].style.display="inline-block";
+    x[i].style.padding="3px";
+    x[i].style.borderRadius="5px";
+    }
+    }
+    function blue(){
+     var x=document.getElementsByClassName("change");
+     var y=document.getElementById("info");
+     var z=document.getElementById("profile_pic_1");
+     z.style.backgroundColor = "#1E90FF";
+     y.style.backgroundColor = "#1E90FF";
+     y.style.color="white";
+    for(var i=0;i<x.length;i++)
+    {
+    x[i].style.backgroundColor = "#1E90FF";
+    x[i].style.color="white";
+    x[i].style.display="inline-block";
+    x[i].style.padding="3px";
+    x[i].style.borderRadius="5px";
+    }
+    }
+    function TimesRoman(){
+    document.getElementById("cont").style.fontFamily="Times New Roman";
+    }
+    function Georgia(){
+    document.getElementById("cont").style.fontFamily="Georgia";
+    }
+    function Arial(){
+    document.getElementById("cont").style.fontFamily="Arial";
+    }
+   window.onload = function () {
+    document.getElementById("cmd")
+        .addEventListener("click", () => {
+            const invoice = this.document.getElementById("cont");
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin:0.7,
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: { scale: 5},
+                jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+}
+</script>
+<div class="container_whole">
+<div class="container" >
+    <div class="row">
+        <div class="col-7">
+    <div class="card shadow-lg" id="cont">
+        <div class=" row p-2 m-1">
+
+            <div class="card-one  col-6" id="info"  >
+                <h2 style="text-transform:capitalize;">{{  user.name     }}</h2>
+                <i class="fa fa-at"></i> &nbsp;{{  user.workEmail     }}</br>
+        <i class="fa fa-phone"></i>&nbsp;{{  user.phone_no     }}</br>
+        <i class="fa fa-linkedin"></i>&nbsp;{{  user.linkedIn     }}
+                </div>
+            <div class=" col-6" id="profile_pic_1" style="padding:2px;">
+                <p><img id="output" style="width:200px; "/></p>
+            </div>
+
+            </div>
+        <div class="p-2 m-1">
+            <hr>
+            <div class="card-two" >
+                <h5 class="change"  >Education</h5>
+                <div style="display:block;">
+
+                    {% set para=user.education    %}
+                    {% set text=para.split("\n")      %}
+                    {% for line in text %}
+                        {{line}}</br>
+                    {%  endfor    %}
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="p-2 m-1">
+            <hr>
+            <div class="card-two">
+                <h5 class="change">Skills</h5>
+                <div style="display:block;">
+
+                    {% set para=user.skills    %}
+                    {% set text=para.split("\n")      %}
+                    {% for line in text %}
+                        {{line}}</br>
+                    {%  endfor    %}
+
+
+                </div>
+            </div>
+        </div>
+        <div class="p-2 m-1">
+            <hr>
+            <div class="card-two">
+                <h5 class="change">Projects</h5>
+                <div style="display:block;">
+                    {{  user.project_1     }}</br>
+                    {{  user.project_2    }}
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+        <div class="col-3">
+<div class="card-custom " >
+    <button type="button" class="btn btn-dark m-2 p-2" onclick="black()">black</button>
+    <button type="button" class="btn btn-danger m-2 p-2" onclick="red()">red</button>
+    <button type="button" class="btn btn-primary m-2 p-2" onclick="blue()">blue</button>
+
+    &nbsp;
+
+    <button type="button" class="btn btn-dark m-1 p-2" onclick="TimesRoman()">Times New Roman</button>
+    <button type="button" class="btn btn-danger m-1 p-2" onclick="Georgia()">Georgia</button>
+    <button type="button" class="btn btn-primary m-1 p-2" onclick="Arial()">Arial</button>
+
+<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<button class="btn btn-secondary m-1 p-2" style="color:white;"><label for="file" style="cursor: pointer;">Upload Image</label></button>
+
+
+<!--    <button type="button" class="btn btn-secondary m-1 p-2 " style="color:white;" >Upload Profile Picture</button>-->
+<!--    <div style="display:none">-->
+<!--        <input type="file" name="file" id="profile_pic">-->
+<!--    </div>-->
+        <button type="button" class="btn btn-primary col-12   m-1 p-2" id="cmd" onclick="CreatePDFfromHTML()">Download</button>
+</div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+{%  endblock    %}

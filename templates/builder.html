@@ -1,0 +1,52 @@
+{%   extends 'layout.html'       %}
+{% block content  %}
+<style>
+    .card{
+    height:900px;
+    width:700px;
+    margin:2%;
+    }
+</style>
+
+<div class="container">
+    <div class="card shadow-lg">
+        <h3 contenteditable="true" style="text-align:center";>Name</h3>
+
+        <div class="p-2 m-1">
+            <hr>
+            <div class="card-one">
+                <h5 contenteditable="true" >Education</h5>
+              <button type="button" class="btn btn-dark " style="float:right;" onclick="add_education()" >Add</button>
+            <ul id="education">
+
+            </ul>
+            </div>
+            <hr>
+            <div class="card-two">
+                <h5 contenteditable="true" >Skills</h5>
+            <button type="button" class="btn btn-dark" style="float:right;" onclick="add_skills()" >Add</button>
+            <ul id="skills">
+
+            </ul>
+            </div>
+            <hr>
+
+        </div>
+
+    </div>
+</div>
+<script>
+
+    function add_skills()
+    {
+        document.getElementById("skills").innerHTML+='<li contenteditable="True"></li>';
+
+    }
+    function add_education()
+    {
+        document.getElementById("education").innerHTML+='<li contenteditable="True" id="list" style="word-wrap: break-word;width: 300px;"></li>';
+    }
+
+
+</script>
+{%  endblock    %}

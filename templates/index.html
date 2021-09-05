@@ -1,0 +1,33 @@
+
+{%   extends 'layout.html'       %}
+
+{% block content  %}
+
+<style>
+
+      #home_page{
+      font-size:2em;
+      padding:5%;
+
+      }
+      img{
+      padding:5%;
+      width:300px;
+      }
+    </style>
+<div class="container" id="home_page">
+  <div class="row">
+    <div class="col-6">
+      <p><strong>Make a Job-Winning Resume </br> in Minutes With Our Simple</br> Resume Builder</strong></p>
+<!--  <button type="button" class="btn btn-dark float-right"  >Start Now</button>-->
+        <a  class="btn btn-dark float-right"    href="{{ url_for('signup')}}">Start Now</a>
+      <h5 style="margin-top:15px;">Already a member?</h5>
+      <a  class="btn btn-dark float-right"    href="{{ url_for('login')}}">Login</a>
+    </div>
+  <div class="col-6">
+    <img src="https://leverageedu.com/blog/wp-content/uploads/2020/03/Resume-Format-for-Freshers.png" >
+  </div>
+  </div>
+     </div>
+
+{%  endblock    %}
